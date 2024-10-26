@@ -1,0 +1,20 @@
+version: '3.8'  # Specify the version of Docker Compose
+
+services:
+  frontend:
+    build:
+      context: .  # Set context to the Web-App directory
+      dockerfile: Dockerfile.frontend  # Path to Dockerfile
+    ports:
+      - "5001:5001"
+    depends_on:
+      - backend 
+
+  backend:
+    build:
+      context: .  # Set context to the Web-App directory
+      dockerfile: Dockerfile.backend  # Path to Dockerfile
+    volumes:
+      - ./data.txt:/app/data.txt  
+    ports:
+      - "5000:5000"
