@@ -1,0 +1,23 @@
+# Dockerfile.backend
+
+# Use the official Python image as the base image
+FROM python:3.10
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the requirements file if you have one
+COPY requirements.txt .
+
+# Install any dependencies (if applicable)
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the backend code and other necessary files
+COPY backend.py .
+COPY data.txt .
+
+# Expose the port that the backend will run on
+EXPOSE 5000
+
+# Command to run the backend
+CMD ["python", "backend.py"]
