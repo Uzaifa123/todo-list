@@ -1,0 +1,27 @@
+# Dockerfile.frontend
+
+# Use the official Python image as the base image
+FROM python:3.10
+
+# Set the working directory
+WORKDIR /app
+
+
+# Copy the requirements file if you have one
+COPY requirements.txt .
+
+# Install any dependencies (if applicable)
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the frontend code
+COPY frontend.py .
+
+# Copy any necessary files
+COPY templates/ ./templates/
+COPY static/ ./static/
+
+# Expose the port that the frontend will run on
+EXPOSE 5001
+
+# Command to run the frontend
+CMD ["python", "frontend.py"]
